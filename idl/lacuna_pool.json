@@ -1,0 +1,3525 @@
+{
+  "address": "2JNUVMq3Qg3DM5SUFDXXaW1zjxDUkt8WMNtMAwJmJPiH",
+  "metadata": {
+    "name": "lacuna_pool",
+    "version": "1.0.0",
+    "spec": "0.1.0",
+    "description": "Lacuna privacy pool"
+  },
+  "instructions": [
+    {
+      "name": "allow_freeze",
+      "discriminator": [
+        152,
+        166,
+        78,
+        80,
+        225,
+        11,
+        236,
+        211
+      ],
+      "accounts": [
+        {
+          "name": "payer",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "config",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "mint"
+        },
+        {
+          "name": "freeze_allow",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  102,
+                  114,
+                  101,
+                  101,
+                  122,
+                  101,
+                  95,
+                  111,
+                  107
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "mint"
+              }
+            ]
+          }
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "close_cipher_buffer",
+      "discriminator": [
+        184,
+        105,
+        250,
+        191,
+        6,
+        193,
+        228,
+        20
+      ],
+      "accounts": [
+        {
+          "name": "payer",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "buffer",
+          "writable": true
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "close_proof_buffer",
+      "discriminator": [
+        130,
+        150,
+        6,
+        35,
+        193,
+        34,
+        243,
+        87
+      ],
+      "accounts": [
+        {
+          "name": "payer",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "buffer",
+          "writable": true
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "create_cipher_buffer",
+      "discriminator": [
+        178,
+        162,
+        136,
+        64,
+        46,
+        102,
+        64,
+        76
+      ],
+      "accounts": [
+        {
+          "name": "payer",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "buffer",
+          "writable": true
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "_slot",
+          "type": "u8"
+        }
+      ]
+    },
+    {
+      "name": "create_proof_buffer",
+      "discriminator": [
+        42,
+        36,
+        226,
+        19,
+        141,
+        70,
+        66,
+        141
+      ],
+      "accounts": [
+        {
+          "name": "payer",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "buffer",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  98,
+                  117,
+                  102,
+                  102,
+                  101,
+                  114
+                ]
+              },
+              {
+                "kind": "const",
+                "value": [
+                  112,
+                  114,
+                  111,
+                  111,
+                  102
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "payer"
+              }
+            ]
+          }
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "initialize",
+      "discriminator": [
+        175,
+        175,
+        109,
+        31,
+        13,
+        152,
+        155,
+        237
+      ],
+      "accounts": [
+        {
+          "name": "payer",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "config",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "vault",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  118,
+                  97,
+                  117,
+                  108,
+                  116
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "tree",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  116,
+                  114,
+                  101,
+                  101
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "empty_root",
+          "writable": true
+        },
+        {
+          "name": "program_data",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  19,
+                  78,
+                  215,
+                  98,
+                  189,
+                  13,
+                  183,
+                  145,
+                  56,
+                  65,
+                  220,
+                  16,
+                  202,
+                  153,
+                  3,
+                  62,
+                  145,
+                  68,
+                  73,
+                  228,
+                  189,
+                  149,
+                  37,
+                  148,
+                  106,
+                  148,
+                  111,
+                  162,
+                  114,
+                  36,
+                  11,
+                  122
+                ]
+              }
+            ],
+            "program": {
+              "kind": "const",
+              "value": [
+                2,
+                168,
+                246,
+                145,
+                78,
+                136,
+                161,
+                176,
+                226,
+                16,
+                21,
+                62,
+                247,
+                99,
+                174,
+                43,
+                0,
+                194,
+                185,
+                61,
+                22,
+                193,
+                36,
+                210,
+                192,
+                83,
+                122,
+                16,
+                4,
+                128,
+                0,
+                0
+              ]
+            }
+          }
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "treasury",
+          "type": "pubkey"
+        }
+      ]
+    },
+    {
+      "name": "pause_exits",
+      "discriminator": [
+        135,
+        127,
+        209,
+        187,
+        105,
+        27,
+        111,
+        136
+      ],
+      "accounts": [
+        {
+          "name": "payer",
+          "signer": true
+        },
+        {
+          "name": "config",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "args": [
+        {
+          "name": "seconds",
+          "type": "i64"
+        }
+      ]
+    },
+    {
+      "name": "prove_innocence",
+      "discriminator": [
+        50,
+        50,
+        157,
+        63,
+        53,
+        224,
+        184,
+        45
+      ],
+      "accounts": [
+        {
+          "name": "payer",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "config",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "poi_ok",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  112,
+                  111,
+                  105,
+                  95,
+                  111,
+                  107
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "nullifier"
+              },
+              {
+                "kind": "account",
+                "path": "config.innocence_root",
+                "account": "Config"
+              }
+            ]
+          }
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "nullifier",
+          "type": {
+            "array": [
+              "u8",
+              32
+            ]
+          }
+        },
+        {
+          "name": "packed",
+          "type": "bytes"
+        }
+      ]
+    },
+    {
+      "name": "revoke_freeze",
+      "discriminator": [
+        72,
+        68,
+        191,
+        170,
+        198,
+        224,
+        162,
+        116
+      ],
+      "accounts": [
+        {
+          "name": "payer",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "config",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "mint"
+        },
+        {
+          "name": "freeze_allow",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  102,
+                  114,
+                  101,
+                  101,
+                  122,
+                  101,
+                  95,
+                  111,
+                  107
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "mint"
+              }
+            ]
+          }
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "set_innocence_root",
+      "discriminator": [
+        31,
+        115,
+        253,
+        240,
+        145,
+        108,
+        220,
+        216
+      ],
+      "accounts": [
+        {
+          "name": "payer",
+          "signer": true
+        },
+        {
+          "name": "config",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "args": [
+        {
+          "name": "root",
+          "type": {
+            "array": [
+              "u8",
+              32
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "set_paused",
+      "discriminator": [
+        91,
+        60,
+        125,
+        192,
+        176,
+        225,
+        166,
+        218
+      ],
+      "accounts": [
+        {
+          "name": "payer",
+          "signer": true
+        },
+        {
+          "name": "config",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "args": [
+        {
+          "name": "deposits",
+          "type": "bool"
+        },
+        {
+          "name": "private_sends",
+          "type": "bool"
+        },
+        {
+          "name": "swaps",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "set_poi_required",
+      "discriminator": [
+        146,
+        189,
+        114,
+        205,
+        20,
+        146,
+        220,
+        147
+      ],
+      "accounts": [
+        {
+          "name": "payer",
+          "signer": true
+        },
+        {
+          "name": "config",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "args": [
+        {
+          "name": "required",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "set_refund_delay_slots",
+      "discriminator": [
+        137,
+        68,
+        95,
+        222,
+        113,
+        35,
+        157,
+        160
+      ],
+      "accounts": [
+        {
+          "name": "payer",
+          "signer": true
+        },
+        {
+          "name": "config",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "args": [
+        {
+          "name": "slots",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "set_shield_fee_bps",
+      "discriminator": [
+        88,
+        156,
+        145,
+        93,
+        24,
+        185,
+        2,
+        72
+      ],
+      "accounts": [
+        {
+          "name": "payer",
+          "signer": true
+        },
+        {
+          "name": "config",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "args": [
+        {
+          "name": "bps",
+          "type": "u16"
+        }
+      ]
+    },
+    {
+      "name": "set_swap_fee_bps",
+      "discriminator": [
+        252,
+        186,
+        220,
+        2,
+        153,
+        25,
+        255,
+        27
+      ],
+      "accounts": [
+        {
+          "name": "payer",
+          "signer": true
+        },
+        {
+          "name": "config",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "args": [
+        {
+          "name": "bps",
+          "type": "u16"
+        }
+      ]
+    },
+    {
+      "name": "set_swap_program",
+      "discriminator": [
+        227,
+        234,
+        220,
+        137,
+        194,
+        141,
+        55,
+        243
+      ],
+      "accounts": [
+        {
+          "name": "payer",
+          "signer": true
+        },
+        {
+          "name": "config",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "args": [
+        {
+          "name": "hop",
+          "type": "pubkey"
+        }
+      ]
+    },
+    {
+      "name": "set_unshield_fee_bps",
+      "discriminator": [
+        7,
+        117,
+        95,
+        183,
+        109,
+        188,
+        155,
+        232
+      ],
+      "accounts": [
+        {
+          "name": "payer",
+          "signer": true
+        },
+        {
+          "name": "config",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "args": [
+        {
+          "name": "bps",
+          "type": "u16"
+        }
+      ]
+    },
+    {
+      "name": "shield_nft",
+      "discriminator": [
+        240,
+        18,
+        164,
+        122,
+        90,
+        253,
+        253,
+        2
+      ],
+      "accounts": [
+        {
+          "name": "payer",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "config",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "vault",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  118,
+                  97,
+                  117,
+                  108,
+                  116
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "tree",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  116,
+                  114,
+                  101,
+                  101
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "authority",
+          "signer": true
+        },
+        {
+          "name": "mint"
+        },
+        {
+          "name": "payer_ata",
+          "writable": true
+        },
+        {
+          "name": "vault_ata",
+          "writable": true
+        },
+        {
+          "name": "token_state",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  116,
+                  111,
+                  107,
+                  101,
+                  110
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "token_id"
+              }
+            ]
+          }
+        },
+        {
+          "name": "ciphertext"
+        },
+        {
+          "name": "commitment",
+          "writable": true
+        },
+        {
+          "name": "root",
+          "writable": true
+        },
+        {
+          "name": "note",
+          "writable": true
+        },
+        {
+          "name": "token_program"
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        },
+        {
+          "name": "freeze_allow",
+          "optional": true
+        }
+      ],
+      "args": [
+        {
+          "name": "owner_hash",
+          "type": {
+            "array": [
+              "u8",
+              32
+            ]
+          }
+        },
+        {
+          "name": "amount",
+          "type": "u64"
+        },
+        {
+          "name": "token_id",
+          "type": {
+            "array": [
+              "u8",
+              32
+            ]
+          }
+        },
+        {
+          "name": "expected_index",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "shield_sol",
+      "discriminator": [
+        236,
+        230,
+        72,
+        63,
+        15,
+        240,
+        212,
+        155
+      ],
+      "accounts": [
+        {
+          "name": "payer",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "source",
+          "docs": [
+            "SOL source: the user wallet that pays the shield."
+          ],
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "config",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "vault",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  118,
+                  97,
+                  117,
+                  108,
+                  116
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "tree",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  116,
+                  114,
+                  101,
+                  101
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "token_state",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  116,
+                  111,
+                  107,
+                  101,
+                  110
+                ]
+              },
+              {
+                "kind": "const",
+                "value": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "ciphertext"
+        },
+        {
+          "name": "commitment",
+          "writable": true
+        },
+        {
+          "name": "root",
+          "writable": true
+        },
+        {
+          "name": "note",
+          "writable": true
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "owner_hash",
+          "type": {
+            "array": [
+              "u8",
+              32
+            ]
+          }
+        },
+        {
+          "name": "lamports",
+          "type": "u64"
+        },
+        {
+          "name": "expected_index",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "shield_spl",
+      "discriminator": [
+        12,
+        113,
+        46,
+        124,
+        226,
+        28,
+        121,
+        221
+      ],
+      "accounts": [
+        {
+          "name": "payer",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "config",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "vault",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  118,
+                  97,
+                  117,
+                  108,
+                  116
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "tree",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  116,
+                  114,
+                  101,
+                  101
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "authority",
+          "signer": true
+        },
+        {
+          "name": "mint"
+        },
+        {
+          "name": "payer_ata",
+          "writable": true
+        },
+        {
+          "name": "vault_ata",
+          "writable": true
+        },
+        {
+          "name": "token_state",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  116,
+                  111,
+                  107,
+                  101,
+                  110
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "token_id"
+              }
+            ]
+          }
+        },
+        {
+          "name": "ciphertext"
+        },
+        {
+          "name": "commitment",
+          "writable": true
+        },
+        {
+          "name": "root",
+          "writable": true
+        },
+        {
+          "name": "note",
+          "writable": true
+        },
+        {
+          "name": "token_program"
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        },
+        {
+          "name": "freeze_allow",
+          "optional": true
+        }
+      ],
+      "args": [
+        {
+          "name": "owner_hash",
+          "type": {
+            "array": [
+              "u8",
+              32
+            ]
+          }
+        },
+        {
+          "name": "amount",
+          "type": "u64"
+        },
+        {
+          "name": "token_id",
+          "type": {
+            "array": [
+              "u8",
+              32
+            ]
+          }
+        },
+        {
+          "name": "expected_index",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "swap_execute",
+      "discriminator": [
+        196,
+        229,
+        184,
+        241,
+        84,
+        146,
+        34,
+        128
+      ],
+      "accounts": [
+        {
+          "name": "payer",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "config",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "vault",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  118,
+                  97,
+                  117,
+                  108,
+                  116
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "tree",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  116,
+                  114,
+                  101,
+                  101
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "preparer",
+          "writable": true
+        },
+        {
+          "name": "escrow",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  101,
+                  115,
+                  99,
+                  114,
+                  111,
+                  119
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "escrow.nullifier0",
+                "account": "SwapEscrow"
+              }
+            ]
+          }
+        },
+        {
+          "name": "mint_in"
+        },
+        {
+          "name": "mint_out"
+        },
+        {
+          "name": "escrow_ata",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "account",
+                "path": "escrow"
+              },
+              {
+                "kind": "account",
+                "path": "token_program"
+              },
+              {
+                "kind": "account",
+                "path": "mint_in"
+              }
+            ],
+            "program": {
+              "kind": "const",
+              "value": [
+                140,
+                151,
+                37,
+                143,
+                78,
+                36,
+                137,
+                241,
+                187,
+                61,
+                16,
+                41,
+                20,
+                142,
+                13,
+                131,
+                11,
+                90,
+                19,
+                153,
+                218,
+                255,
+                16,
+                132,
+                4,
+                142,
+                123,
+                216,
+                219,
+                233,
+                248,
+                89
+              ]
+            }
+          }
+        },
+        {
+          "name": "vault_ata_in",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "account",
+                "path": "vault"
+              },
+              {
+                "kind": "account",
+                "path": "token_program"
+              },
+              {
+                "kind": "account",
+                "path": "mint_in"
+              }
+            ],
+            "program": {
+              "kind": "const",
+              "value": [
+                140,
+                151,
+                37,
+                143,
+                78,
+                36,
+                137,
+                241,
+                187,
+                61,
+                16,
+                41,
+                20,
+                142,
+                13,
+                131,
+                11,
+                90,
+                19,
+                153,
+                218,
+                255,
+                16,
+                132,
+                4,
+                142,
+                123,
+                216,
+                219,
+                233,
+                248,
+                89
+              ]
+            }
+          }
+        },
+        {
+          "name": "vault_ata_out",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "account",
+                "path": "vault"
+              },
+              {
+                "kind": "account",
+                "path": "token_program"
+              },
+              {
+                "kind": "account",
+                "path": "mint_out"
+              }
+            ],
+            "program": {
+              "kind": "const",
+              "value": [
+                140,
+                151,
+                37,
+                143,
+                78,
+                36,
+                137,
+                241,
+                187,
+                61,
+                16,
+                41,
+                20,
+                142,
+                13,
+                131,
+                11,
+                90,
+                19,
+                153,
+                218,
+                255,
+                16,
+                132,
+                4,
+                142,
+                123,
+                216,
+                219,
+                233,
+                248,
+                89
+              ]
+            }
+          }
+        },
+        {
+          "name": "hop_program"
+        },
+        {
+          "name": "ciphertext"
+        },
+        {
+          "name": "commitment",
+          "writable": true
+        },
+        {
+          "name": "root",
+          "writable": true
+        },
+        {
+          "name": "note",
+          "writable": true
+        },
+        {
+          "name": "token_state_in",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  116,
+                  111,
+                  107,
+                  101,
+                  110
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "escrow.token_in",
+                "account": "SwapEscrow"
+              }
+            ]
+          }
+        },
+        {
+          "name": "token_state_out",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  116,
+                  111,
+                  107,
+                  101,
+                  110
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "escrow.token_out",
+                "account": "SwapEscrow"
+              }
+            ]
+          }
+        },
+        {
+          "name": "token_program"
+        },
+        {
+          "name": "associated_token_program",
+          "address": "ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL"
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "expected_index",
+          "type": "u64"
+        },
+        {
+          "name": "hop_data",
+          "type": "bytes"
+        }
+      ]
+    },
+    {
+      "name": "swap_prepare",
+      "discriminator": [
+        4,
+        38,
+        17,
+        221,
+        175,
+        60,
+        141,
+        113
+      ],
+      "accounts": [
+        {
+          "name": "payer",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "escrow",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  101,
+                  115,
+                  99,
+                  114,
+                  111,
+                  119
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "nullifier0"
+              }
+            ]
+          }
+        },
+        {
+          "name": "mint_in"
+        },
+        {
+          "name": "mint_out"
+        },
+        {
+          "name": "hop_program"
+        },
+        {
+          "name": "escrow_ata",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "account",
+                "path": "escrow"
+              },
+              {
+                "kind": "account",
+                "path": "token_program"
+              },
+              {
+                "kind": "account",
+                "path": "mint_in"
+              }
+            ],
+            "program": {
+              "kind": "const",
+              "value": [
+                140,
+                151,
+                37,
+                143,
+                78,
+                36,
+                137,
+                241,
+                187,
+                61,
+                16,
+                41,
+                20,
+                142,
+                13,
+                131,
+                11,
+                90,
+                19,
+                153,
+                218,
+                255,
+                16,
+                132,
+                4,
+                142,
+                123,
+                216,
+                219,
+                233,
+                248,
+                89
+              ]
+            }
+          }
+        },
+        {
+          "name": "token_program"
+        },
+        {
+          "name": "associated_token_program",
+          "address": "ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL"
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        },
+        {
+          "name": "transact",
+          "accounts": [
+            {
+              "name": "payer",
+              "writable": true,
+              "signer": true
+            },
+            {
+              "name": "config",
+              "writable": true,
+              "pda": {
+                "seeds": [
+                  {
+                    "kind": "const",
+                    "value": [
+                      99,
+                      111,
+                      110,
+                      102,
+                      105,
+                      103
+                    ]
+                  }
+                ]
+              }
+            },
+            {
+              "name": "vault",
+              "writable": true,
+              "pda": {
+                "seeds": [
+                  {
+                    "kind": "const",
+                    "value": [
+                      118,
+                      97,
+                      117,
+                      108,
+                      116
+                    ]
+                  }
+                ]
+              }
+            },
+            {
+              "name": "tree",
+              "writable": true,
+              "pda": {
+                "seeds": [
+                  {
+                    "kind": "const",
+                    "value": [
+                      116,
+                      114,
+                      101,
+                      101
+                    ]
+                  }
+                ]
+              }
+            },
+            {
+              "name": "proof"
+            },
+            {
+              "name": "ciphertext0"
+            },
+            {
+              "name": "ciphertext1"
+            },
+            {
+              "name": "known_root"
+            },
+            {
+              "name": "nullifier0",
+              "writable": true
+            },
+            {
+              "name": "nullifier1",
+              "writable": true
+            },
+            {
+              "name": "commitment0",
+              "writable": true
+            },
+            {
+              "name": "commitment1",
+              "writable": true
+            },
+            {
+              "name": "root0",
+              "writable": true
+            },
+            {
+              "name": "root1",
+              "writable": true
+            },
+            {
+              "name": "note0",
+              "writable": true
+            },
+            {
+              "name": "note1",
+              "writable": true
+            },
+            {
+              "name": "token_state0",
+              "writable": true,
+              "optional": true
+            },
+            {
+              "name": "token_state1",
+              "writable": true,
+              "optional": true
+            },
+            {
+              "name": "recipient",
+              "writable": true,
+              "optional": true
+            },
+            {
+              "name": "relay_recipient",
+              "writable": true,
+              "optional": true
+            },
+            {
+              "name": "mint0",
+              "optional": true
+            },
+            {
+              "name": "mint1",
+              "optional": true
+            },
+            {
+              "name": "vault_ata0",
+              "writable": true,
+              "optional": true
+            },
+            {
+              "name": "vault_ata1",
+              "writable": true,
+              "optional": true
+            },
+            {
+              "name": "recipient_ata0",
+              "writable": true,
+              "optional": true
+            },
+            {
+              "name": "recipient_ata1",
+              "writable": true,
+              "optional": true
+            },
+            {
+              "name": "relay_ata",
+              "writable": true,
+              "optional": true
+            },
+            {
+              "name": "token_program",
+              "optional": true
+            },
+            {
+              "name": "system_program",
+              "address": "11111111111111111111111111111111"
+            }
+          ]
+        }
+      ],
+      "args": [
+        {
+          "name": "expected_index",
+          "type": "u64"
+        },
+        {
+          "name": "min_out",
+          "type": "u64"
+        },
+        {
+          "name": "out_owner_hash",
+          "type": {
+            "array": [
+              "u8",
+              32
+            ]
+          }
+        },
+        {
+          "name": "refund_owner_hash",
+          "type": {
+            "array": [
+              "u8",
+              32
+            ]
+          }
+        },
+        {
+          "name": "nullifier0",
+          "type": {
+            "array": [
+              "u8",
+              32
+            ]
+          }
+        },
+        {
+          "name": "out_cipher_hash",
+          "type": {
+            "array": [
+              "u8",
+              32
+            ]
+          }
+        },
+        {
+          "name": "refund_cipher_hash",
+          "type": {
+            "array": [
+              "u8",
+              32
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "swap_refund",
+      "docs": [
+        "Refund stays available while swaps are paused so a parked escrow can return to a note."
+      ],
+      "discriminator": [
+        231,
+        81,
+        0,
+        49,
+        215,
+        146,
+        161,
+        14
+      ],
+      "accounts": [
+        {
+          "name": "payer",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "config",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "vault",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  118,
+                  97,
+                  117,
+                  108,
+                  116
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "tree",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  116,
+                  114,
+                  101,
+                  101
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "preparer",
+          "writable": true
+        },
+        {
+          "name": "escrow",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  101,
+                  115,
+                  99,
+                  114,
+                  111,
+                  119
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "escrow.nullifier0",
+                "account": "SwapEscrow"
+              }
+            ]
+          }
+        },
+        {
+          "name": "mint_in"
+        },
+        {
+          "name": "escrow_ata",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "account",
+                "path": "escrow"
+              },
+              {
+                "kind": "account",
+                "path": "token_program"
+              },
+              {
+                "kind": "account",
+                "path": "mint_in"
+              }
+            ],
+            "program": {
+              "kind": "const",
+              "value": [
+                140,
+                151,
+                37,
+                143,
+                78,
+                36,
+                137,
+                241,
+                187,
+                61,
+                16,
+                41,
+                20,
+                142,
+                13,
+                131,
+                11,
+                90,
+                19,
+                153,
+                218,
+                255,
+                16,
+                132,
+                4,
+                142,
+                123,
+                216,
+                219,
+                233,
+                248,
+                89
+              ]
+            }
+          }
+        },
+        {
+          "name": "vault_ata",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "account",
+                "path": "vault"
+              },
+              {
+                "kind": "account",
+                "path": "token_program"
+              },
+              {
+                "kind": "account",
+                "path": "mint_in"
+              }
+            ],
+            "program": {
+              "kind": "const",
+              "value": [
+                140,
+                151,
+                37,
+                143,
+                78,
+                36,
+                137,
+                241,
+                187,
+                61,
+                16,
+                41,
+                20,
+                142,
+                13,
+                131,
+                11,
+                90,
+                19,
+                153,
+                218,
+                255,
+                16,
+                132,
+                4,
+                142,
+                123,
+                216,
+                219,
+                233,
+                248,
+                89
+              ]
+            }
+          }
+        },
+        {
+          "name": "ciphertext"
+        },
+        {
+          "name": "commitment",
+          "writable": true
+        },
+        {
+          "name": "root",
+          "writable": true
+        },
+        {
+          "name": "note",
+          "writable": true
+        },
+        {
+          "name": "token_state",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  116,
+                  111,
+                  107,
+                  101,
+                  110
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "escrow.token_in",
+                "account": "SwapEscrow"
+              }
+            ]
+          }
+        },
+        {
+          "name": "token_program"
+        },
+        {
+          "name": "associated_token_program",
+          "address": "ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL"
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "expected_index",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "transact",
+      "discriminator": [
+        217,
+        149,
+        130,
+        143,
+        221,
+        52,
+        252,
+        119
+      ],
+      "accounts": [
+        {
+          "name": "payer",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "config",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "vault",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  118,
+                  97,
+                  117,
+                  108,
+                  116
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "tree",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  116,
+                  114,
+                  101,
+                  101
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "proof"
+        },
+        {
+          "name": "ciphertext0"
+        },
+        {
+          "name": "ciphertext1"
+        },
+        {
+          "name": "known_root"
+        },
+        {
+          "name": "nullifier0",
+          "writable": true
+        },
+        {
+          "name": "nullifier1",
+          "writable": true
+        },
+        {
+          "name": "commitment0",
+          "writable": true
+        },
+        {
+          "name": "commitment1",
+          "writable": true
+        },
+        {
+          "name": "root0",
+          "writable": true
+        },
+        {
+          "name": "root1",
+          "writable": true
+        },
+        {
+          "name": "note0",
+          "writable": true
+        },
+        {
+          "name": "note1",
+          "writable": true
+        },
+        {
+          "name": "token_state0",
+          "writable": true,
+          "optional": true
+        },
+        {
+          "name": "token_state1",
+          "writable": true,
+          "optional": true
+        },
+        {
+          "name": "recipient",
+          "writable": true,
+          "optional": true
+        },
+        {
+          "name": "relay_recipient",
+          "writable": true,
+          "optional": true
+        },
+        {
+          "name": "mint0",
+          "optional": true
+        },
+        {
+          "name": "mint1",
+          "optional": true
+        },
+        {
+          "name": "vault_ata0",
+          "writable": true,
+          "optional": true
+        },
+        {
+          "name": "vault_ata1",
+          "writable": true,
+          "optional": true
+        },
+        {
+          "name": "recipient_ata0",
+          "writable": true,
+          "optional": true
+        },
+        {
+          "name": "recipient_ata1",
+          "writable": true,
+          "optional": true
+        },
+        {
+          "name": "relay_ata",
+          "writable": true,
+          "optional": true
+        },
+        {
+          "name": "token_program",
+          "optional": true
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "expected_index",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "withdraw_fees",
+      "discriminator": [
+        198,
+        212,
+        171,
+        109,
+        144,
+        215,
+        174,
+        89
+      ],
+      "accounts": [
+        {
+          "name": "payer",
+          "signer": true
+        },
+        {
+          "name": "config",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "vault",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  118,
+                  97,
+                  117,
+                  108,
+                  116
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "token_state",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  116,
+                  111,
+                  107,
+                  101,
+                  110
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "token_state.token_id",
+                "account": "TokenState"
+              }
+            ]
+          }
+        },
+        {
+          "name": "destination",
+          "writable": true
+        },
+        {
+          "name": "mint",
+          "optional": true
+        },
+        {
+          "name": "vault_ata",
+          "writable": true,
+          "optional": true
+        },
+        {
+          "name": "destination_ata",
+          "writable": true,
+          "optional": true
+        },
+        {
+          "name": "token_program",
+          "optional": true
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "write_cipher_buffer",
+      "discriminator": [
+        230,
+        31,
+        213,
+        19,
+        212,
+        229,
+        234,
+        128
+      ],
+      "accounts": [
+        {
+          "name": "payer",
+          "signer": true
+        },
+        {
+          "name": "buffer",
+          "writable": true
+        }
+      ],
+      "args": [
+        {
+          "name": "offset",
+          "type": "u32"
+        },
+        {
+          "name": "data",
+          "type": "bytes"
+        }
+      ]
+    },
+    {
+      "name": "write_proof_buffer",
+      "discriminator": [
+        3,
+        226,
+        158,
+        231,
+        122,
+        154,
+        12,
+        49
+      ],
+      "accounts": [
+        {
+          "name": "payer",
+          "signer": true
+        },
+        {
+          "name": "buffer",
+          "writable": true
+        }
+      ],
+      "args": [
+        {
+          "name": "offset",
+          "type": "u32"
+        },
+        {
+          "name": "data",
+          "type": "bytes"
+        }
+      ]
+    }
+  ],
+  "accounts": [
+    {
+      "name": "CipherBuffer",
+      "discriminator": [
+        189,
+        192,
+        88,
+        150,
+        19,
+        226,
+        83,
+        17
+      ]
+    },
+    {
+      "name": "Config",
+      "discriminator": [
+        155,
+        12,
+        170,
+        224,
+        30,
+        250,
+        204,
+        130
+      ]
+    },
+    {
+      "name": "FreezeAllow",
+      "discriminator": [
+        168,
+        213,
+        113,
+        143,
+        231,
+        85,
+        64,
+        237
+      ]
+    },
+    {
+      "name": "Marker",
+      "discriminator": [
+        190,
+        81,
+        208,
+        182,
+        158,
+        86,
+        51,
+        154
+      ]
+    },
+    {
+      "name": "ProofBuffer",
+      "discriminator": [
+        71,
+        133,
+        225,
+        94,
+        9,
+        130,
+        40,
+        161
+      ]
+    },
+    {
+      "name": "SwapEscrow",
+      "discriminator": [
+        38,
+        120,
+        247,
+        80,
+        65,
+        176,
+        97,
+        45
+      ]
+    },
+    {
+      "name": "TokenState",
+      "discriminator": [
+        218,
+        112,
+        6,
+        149,
+        55,
+        186,
+        168,
+        163
+      ]
+    },
+    {
+      "name": "Tree",
+      "discriminator": [
+        100,
+        9,
+        213,
+        154,
+        6,
+        136,
+        109,
+        55
+      ]
+    }
+  ],
+  "events": [
+    {
+      "name": "NoteEvent",
+      "discriminator": [
+        150,
+        170,
+        166,
+        170,
+        136,
+        229,
+        220,
+        102
+      ]
+    },
+    {
+      "name": "Nullified",
+      "discriminator": [
+        124,
+        69,
+        200,
+        64,
+        75,
+        203,
+        121,
+        17
+      ]
+    },
+    {
+      "name": "PublicExit",
+      "discriminator": [
+        240,
+        135,
+        28,
+        94,
+        252,
+        182,
+        56,
+        78
+      ]
+    },
+    {
+      "name": "Shielded",
+      "discriminator": [
+        241,
+        61,
+        122,
+        176,
+        176,
+        134,
+        122,
+        191
+      ]
+    }
+  ],
+  "errors": [
+    {
+      "code": 6000,
+      "name": "BadValue",
+      "msg": "Bad value"
+    },
+    {
+      "code": 6001,
+      "name": "BadRoot",
+      "msg": "Unknown Merkle root"
+    },
+    {
+      "code": 6002,
+      "name": "BadProof",
+      "msg": "Invalid proof"
+    },
+    {
+      "code": 6003,
+      "name": "BadProofPoint",
+      "msg": "Invalid proof point"
+    },
+    {
+      "code": 6004,
+      "name": "BadPairing",
+      "msg": "Pairing check failed"
+    },
+    {
+      "code": 6005,
+      "name": "BadFee",
+      "msg": "Fee is below the unshield floor"
+    },
+    {
+      "code": 6006,
+      "name": "NotOwner",
+      "msg": "Not the owner"
+    },
+    {
+      "code": 6007,
+      "name": "DoubleSpend",
+      "msg": "Already spent"
+    },
+    {
+      "code": 6008,
+      "name": "CiphertextTooLarge",
+      "msg": "Ciphertext is too large"
+    },
+    {
+      "code": 6009,
+      "name": "NotTreasury",
+      "msg": "Not the treasury"
+    },
+    {
+      "code": 6010,
+      "name": "FeeOnTransfer",
+      "msg": "Token transfer delivered a different amount"
+    },
+    {
+      "code": 6011,
+      "name": "BadSwapProgram",
+      "msg": "Swap program is missing or not allowlisted"
+    },
+    {
+      "code": 6012,
+      "name": "BadBuffer",
+      "msg": "Buffer is incomplete"
+    },
+    {
+      "code": 6013,
+      "name": "StaleTree",
+      "msg": "Tree next_index moved; rebuild insert PDAs"
+    },
+    {
+      "code": 6014,
+      "name": "Paused",
+      "msg": "This instruction is paused"
+    },
+    {
+      "code": 6015,
+      "name": "BadMint",
+      "msg": "Mint has a hook, permanent delegate, or other unsafe extension"
+    },
+    {
+      "code": 6016,
+      "name": "BadSwap",
+      "msg": "Swap escrow is invalid or hop is not allowlisted"
+    },
+    {
+      "code": 6017,
+      "name": "Slippage",
+      "msg": "Swap output is below min_out"
+    },
+    {
+      "code": 6018,
+      "name": "BadPoi",
+      "msg": "Proof of innocence is missing or does not match the association set"
+    }
+  ],
+  "types": [
+    {
+      "name": "CipherBuffer",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "authority",
+            "type": "pubkey"
+          },
+          {
+            "name": "filled",
+            "type": "u32"
+          },
+          {
+            "name": "payload",
+            "type": {
+              "array": [
+                "u8",
+                1024
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "Config",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "owner",
+            "type": "pubkey"
+          },
+          {
+            "name": "treasury",
+            "type": "pubkey"
+          },
+          {
+            "name": "vault",
+            "type": "pubkey"
+          },
+          {
+            "name": "swap_program",
+            "docs": [
+              "Allowlisted hop (Jupiter or the dummy AMM in tests). Default = none."
+            ],
+            "type": "pubkey"
+          },
+          {
+            "name": "shield_fee_bps",
+            "type": "u16"
+          },
+          {
+            "name": "unshield_fee_bps",
+            "type": "u16"
+          },
+          {
+            "name": "swap_fee_bps",
+            "type": "u16"
+          },
+          {
+            "name": "tree_number",
+            "type": "u64"
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          },
+          {
+            "name": "vault_bump",
+            "type": "u8"
+          },
+          {
+            "name": "paused_deposits",
+            "type": "bool"
+          },
+          {
+            "name": "paused_private",
+            "type": "bool"
+          },
+          {
+            "name": "paused_swaps",
+            "type": "bool"
+          },
+          {
+            "name": "exit_pause_until",
+            "type": "i64"
+          },
+          {
+            "name": "last_exit_pause",
+            "type": "i64"
+          },
+          {
+            "name": "refund_delay_slots",
+            "type": "u64"
+          },
+          {
+            "name": "innocence_root",
+            "docs": [
+              "Root of the owner-published association set of innocent commitments."
+            ],
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          },
+          {
+            "name": "poi_required",
+            "docs": [
+              "When set, public unshields (not private sends, not swaps) need a PoI marker."
+            ],
+            "type": "bool"
+          }
+        ]
+      }
+    },
+    {
+      "name": "FreezeAllow",
+      "docs": [
+        "Owner-approved mint that may keep a freeze authority (USDC, USDT, and similar).",
+        "The issuer can still freeze the vault ATA and lock every note in that token."
+      ],
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "mint",
+            "type": "pubkey"
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Marker",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "bump",
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "NoteEvent",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "tree_number",
+            "type": "u64"
+          },
+          {
+            "name": "leaf_index",
+            "type": "u64"
+          },
+          {
+            "name": "commitment",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "Nullified",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "nullifier",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "ProofBuffer",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "authority",
+            "type": "pubkey"
+          },
+          {
+            "name": "filled",
+            "type": "u32"
+          },
+          {
+            "name": "payload",
+            "type": {
+              "array": [
+                "u8",
+                800
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "PublicExit",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "mint",
+            "type": "pubkey"
+          },
+          {
+            "name": "to",
+            "type": "pubkey"
+          },
+          {
+            "name": "amount",
+            "type": "u128"
+          },
+          {
+            "name": "protocol_fee",
+            "type": "u128"
+          },
+          {
+            "name": "relay_fee",
+            "type": "u128"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Shielded",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "from",
+            "type": "pubkey"
+          },
+          {
+            "name": "mint",
+            "type": "pubkey"
+          },
+          {
+            "name": "gross",
+            "type": "u128"
+          },
+          {
+            "name": "fee",
+            "type": "u128"
+          }
+        ]
+      }
+    },
+    {
+      "name": "SwapEscrow",
+      "docs": [
+        "Isolated swap escrow. Holds one input mint until execute or refund.",
+        "The hop may only sign for this PDA against `escrow_ata`; no other escrow-owned ATAs."
+      ],
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "bump",
+            "type": "u8"
+          },
+          {
+            "name": "mint_in",
+            "type": "pubkey"
+          },
+          {
+            "name": "mint_out",
+            "type": "pubkey"
+          },
+          {
+            "name": "hop",
+            "type": "pubkey"
+          },
+          {
+            "name": "amount_in",
+            "type": "u64"
+          },
+          {
+            "name": "min_out",
+            "type": "u64"
+          },
+          {
+            "name": "owner_hash",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          },
+          {
+            "name": "out_owner_hash",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          },
+          {
+            "name": "token_in",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          },
+          {
+            "name": "token_out",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          },
+          {
+            "name": "nullifier0",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          },
+          {
+            "name": "preparer",
+            "type": "pubkey"
+          },
+          {
+            "name": "prepared_slot",
+            "type": "u64"
+          },
+          {
+            "name": "out_cipher_hash",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          },
+          {
+            "name": "refund_cipher_hash",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "TokenState",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "token_id",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          },
+          {
+            "name": "mint",
+            "type": "pubkey"
+          },
+          {
+            "name": "is_native",
+            "type": "bool"
+          },
+          {
+            "name": "is_nft",
+            "type": "bool"
+          },
+          {
+            "name": "pool_balance",
+            "type": "u128"
+          },
+          {
+            "name": "fee_balance",
+            "type": "u128"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Tree",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "tree_number",
+            "type": "u64"
+          },
+          {
+            "name": "next_index",
+            "type": "u64"
+          },
+          {
+            "name": "current_root",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          },
+          {
+            "name": "filled_subtrees",
+            "type": {
+              "array": [
+                {
+                  "array": [
+                    "u8",
+                    32
+                  ]
+                },
+                16
+              ]
+            }
+          },
+          {
+            "name": "zeros",
+            "type": {
+              "array": [
+                {
+                  "array": [
+                    "u8",
+                    32
+                  ]
+                },
+                16
+              ]
+            }
+          }
+        ]
+      }
+    }
+  ]
+}
