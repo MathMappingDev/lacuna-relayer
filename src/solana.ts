@@ -278,15 +278,27 @@ async function transactAccounts(body: IncomingJob, signals: bigint[]) {
   const inserted = await insertOutputs([signals[SIG.commitment0], signals[SIG.commitment1]]);
   const cfg = await program!.account.config.fetch(configPda());
   const remaining: { pubkey: PublicKey; isWritable: boolean; isSigner: boolean }[] = [];
-  const innocenceRoot = Buffer.from(cfg.innocenceRoot as number[]);
-  if (cfg.poiRequired && needsPublicExit(signals) && toBig(innocenceRoot) !== 0n) {
+  const poiRoots: Buffer[] = [Buffer.from(cfg.innocenceRoot as number[])];
+  for (const item of (cfg.innocenceHistory as number[][] | undefined) ?? []) {
+    const buf = Buffer.from(item);
+    if (buf.some((byte) => byte !== 0)) poiRoots.push(buf);
+  }
+  const needPoi = signals[SIG.amount0] > 0n || signals[SIG.amount1] > 0n;
+  if (cfg.poiRequired && needPoi) {
     for (const nf of [signals[SIG.nullifier0], signals[SIG.nullifier1]]) {
       if (nf === 0n) continue;
-      remaining.push({ pubkey: poiOkPda(be32(nf), innocenceRoot), isWritable: false, isSigner: false });
+      for (const root of poiRoots) {
+        const marker = poiOkPda(be32(nf), root);
+        if (await program!.provider.connection.getAccountInfo(marker)) {
+          remaining.push({ pubkey: marker, isWritable: false, isSigner: false });
+          break;
+        }
+      }
     }
   }
   const token0 = signals[SIG.token0] === 0n ? Buffer.alloc(32) : be32(signals[SIG.token0]);
-  const needExit = needsPublicExit(signals) || signals[SIG.fee0] > 0n || signals[SIG.fee1] > 0n;
+  const needExit =
+    needsPublicExit(signals) || signals[SIG.fee0] > 0n || signals[SIG.fee1] > 0n || signals[SIG.relayFee] > 0n;
   const tokenProgram = key(body.tokenProgram) ?? (body.tokenMint0 ? TOKEN_PROGRAM_ID : null);
   return {
     startIndex: inserted.startIndex,
@@ -338,11 +350,14 @@ async function submitTransact(body: IncomingJob): Promise<string> {
 
 export async function submitSolana(body: IncomingJob): Promise<string> {
   if (!payer || !program) throw new Error("This relayer is not configured for Solana");
+  if (body.poi && body.kind !== "proveInnocence") {
+    await submitSolana({ ...body, kind: "proveInnocence", proof: body.poi, poi: undefined });
+  }
   if (body.kind === "proveInnocence") {
     const signals = poiSignals(body.proof!);
     const packed = packGroth16(body.proof!, 2);
     const signature = await program.methods
-      .proveInnocence([...be32(signals[1])], packed)
+      .proveInnocence([...be32(signals[1])], [...be32(signals[0])], packed)
       .accounts({
         payer: payer.publicKey,
         poiOk: poiOkPda(be32(signals[1]), be32(signals[0])),

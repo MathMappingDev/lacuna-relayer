@@ -70,5 +70,5 @@ export function nativeToken(signals: bigint[]): boolean {
 }
 
 export function needsPublicExit(signals: bigint[]): boolean {
-  return signals[SIG.amount0] > 0n || signals[SIG.amount1] > 0n || signals[SIG.relayFee] > 0n;
+  return signals[SIG.amount0] > 0n || signals[SIG.amount1] > 0n;
 }

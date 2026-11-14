@@ -81,6 +81,48 @@
       "args": []
     },
     {
+      "name": "apply_poi",
+      "docs": [
+        "Anyone may apply a scheduled root / gate change after the delay."
+      ],
+      "discriminator": [
+        140,
+        7,
+        109,
+        189,
+        98,
+        209,
+        86,
+        66
+      ],
+      "accounts": [
+        {
+          "name": "payer",
+          "signer": true
+        },
+        {
+          "name": "config",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "args": []
+    },
+    {
       "name": "close_cipher_buffer",
       "discriminator": [
         184,
@@ -104,6 +146,91 @@
         }
       ],
       "args": []
+    },
+    {
+      "name": "close_poi_ok",
+      "discriminator": [
+        114,
+        216,
+        6,
+        8,
+        139,
+        96,
+        216,
+        126
+      ],
+      "accounts": [
+        {
+          "name": "payer",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "config",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "poi_ok",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  112,
+                  111,
+                  105,
+                  95,
+                  111,
+                  107
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "nullifier"
+              },
+              {
+                "kind": "arg",
+                "path": "root"
+              }
+            ]
+          }
+        }
+      ],
+      "args": [
+        {
+          "name": "root",
+          "type": {
+            "array": [
+              "u8",
+              32
+            ]
+          }
+        },
+        {
+          "name": "_nullifier",
+          "type": {
+            "array": [
+              "u8",
+              32
+            ]
+          }
+        }
+      ]
     },
     {
       "name": "close_proof_buffer",
@@ -492,9 +619,8 @@
                 "path": "nullifier"
               },
               {
-                "kind": "account",
-                "path": "config.innocence_root",
-                "account": "Config"
+                "kind": "arg",
+                "path": "root"
               }
             ]
           }
@@ -507,6 +633,15 @@
       "args": [
         {
           "name": "nullifier",
+          "type": {
+            "array": [
+              "u8",
+              32
+            ]
+          }
+        },
+        {
+          "name": "root",
           "type": {
             "array": [
               "u8",
@@ -3051,6 +3186,11 @@
       "code": 6018,
       "name": "BadPoi",
       "msg": "Proof of innocence is missing or does not match the association set"
+    },
+    {
+      "code": 6019,
+      "name": "Timelock",
+      "msg": "This change is still in its timelock"
     }
   ],
   "types": [
@@ -3154,7 +3294,7 @@
           {
             "name": "innocence_root",
             "docs": [
-              "Root of the owner-published association set of innocent commitments."
+              "Live association-set root. Markers for this root and `innocence_history` are accepted."
             ],
             "type": {
               "array": [
@@ -3166,9 +3306,44 @@
           {
             "name": "poi_required",
             "docs": [
-              "When set, public unshields (not private sends, not swaps) need a PoI marker."
+              "When set, public unshields and swap prepares need a PoI marker."
             ],
             "type": "bool"
+          },
+          {
+            "name": "pending_innocence_root",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          },
+          {
+            "name": "pending_poi_required",
+            "type": "bool"
+          },
+          {
+            "name": "poi_pending",
+            "type": "bool"
+          },
+          {
+            "name": "poi_eta",
+            "type": "i64"
+          },
+          {
+            "name": "innocence_history",
+            "type": {
+              "array": [
+                {
+                  "array": [
+                    "u8",
+                    32
+                  ]
+                },
+                8
+              ]
+            }
           }
         ]
       }
